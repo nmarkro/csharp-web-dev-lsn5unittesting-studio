@@ -6,12 +6,81 @@ namespace BalancedBracketsTests
     [TestClass]
     public class BalancedBracketsTests
     {
-        // TODO: Add tests to this file.
+        [TestMethod]
+        public void OnlyBracketsReturnsTrue()
+        {
+            Assert.IsTrue(BalancedBrackets.HasBalancedBrackets("[]"));
+        }
 
         [TestMethod]
-        public void EmptyTest()
+        public void MoreOpenBracketsReturnsFalse()
         {
-            Assert.AreEqual(true, true);
+            Assert.IsFalse(BalancedBrackets.HasBalancedBrackets("[[]"));
+        }
+        
+        public void MoreCloseBracketsReturnsFalse()
+        {
+            Assert.IsFalse(BalancedBrackets.HasBalancedBrackets("[]]"));
+        }
+
+        [TestMethod]
+        public void MidwordBracketsReturnsTrue()
+        {
+            Assert.IsTrue(BalancedBrackets.HasBalancedBrackets("Launch[Code]"));
+        }
+
+        [TestMethod]
+        public void BracketsWrongOrderReturnsFalse()
+        {
+            Assert.IsFalse(BalancedBrackets.HasBalancedBrackets("]["));
+        }
+
+        [TestMethod]
+        public void OnlyOpenBracketsReturnsFalse()
+        {
+            Assert.IsFalse(BalancedBrackets.HasBalancedBrackets("["));
+        }
+
+        [TestMethod]
+        public void OnlyClosedBracketsReturnsFalse()
+        {
+            Assert.IsFalse(BalancedBrackets.HasBalancedBrackets("]"));
+        }
+
+        [TestMethod]
+        public void NoBracketsReturnsTrue()
+        {
+            Assert.IsTrue(BalancedBrackets.HasBalancedBrackets(""));
+        }
+
+        [TestMethod]
+        public void BalancedNestedBracketsReturnsTrue()
+        {
+            Assert.IsTrue(BalancedBrackets.HasBalancedBrackets("[[[]]]"));
+        }
+
+        [TestMethod]
+        public void UnbalancedNestedBracketsReturnsFalse()
+        {
+            Assert.IsFalse(BalancedBrackets.HasBalancedBrackets("[[[]]"));
+        }
+
+        [TestMethod]
+        public void MultipleSetsOfBalancedBracketsReturnsTrue()
+        {
+            Assert.IsTrue(BalancedBrackets.HasBalancedBrackets("[][][]"));
+        }
+
+        [TestMethod]
+        public void IgnoresWhiteSpace()
+        {
+            Assert.IsTrue(BalancedBrackets.HasBalancedBrackets("   [    ]   "));
+        }
+
+        [TestMethod]
+        public void StringWithNoBracketsReturnsTrue()
+        {
+            Assert.IsTrue(BalancedBrackets.HasBalancedBrackets("LaunchCode!"));
         }
     }
 }
